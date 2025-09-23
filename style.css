@@ -1,0 +1,113 @@
+
+* {
+  margin:  0;
+  padding:  0;
+  box-sizing:  border-box;
+  font-family:  Arial, sans-serif;
+}
+
+body  {
+  background: url('images/parking.jpeg') no-repeat center center/cover;
+  height: 100vh;
+  color: white;
+}
+
+
+nav {
+  display:  flex;
+  justify-content:  space-between;
+  align-items:  center;
+  padding:  20px 50px;
+  background:  rgba(0, 0, 0, 0.85);
+  position:  fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.site-logo  {
+  font-size: 22px;
+  font-weight: bold;
+  color: #2e5be3;
+  letter-spacing: 2px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a  {
+  text-decoration: none;
+  color: white;
+  font-size: 15px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active  {
+  color: #2e5be3;
+}
+
+
+.hero-section  {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hero-section h1  {
+  font-size: 40px;
+  font-weight: bold;
+  color: #6ca8ff;
+  margin-bottom: 20px;
+}
+
+.hero-section p  {
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #ddd;
+}
+
+
+.hero-buttons  {
+  display: flex;
+  gap: 20px;
+}
+
+.btn {
+  padding: 12px 25px;
+  border: 2px solid #2e5be3;
+  border-radius: 25px;
+  background: transparent;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-book {
+  background: #2e5be3;
+  border-color: #2e5be3;
+}
+
+.btn:hover {
+  background: #1a3d99;
+  border-color: #1a3d99;
+}
+.content-section {
+  padding: 100px 20px;
+  text-align: center;
+  background: #f8f8f8;
+  color: #333;
+}
+
+.content-section:nth-child(even) {
+  background: #e6e6e6;
+}
