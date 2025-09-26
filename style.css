@@ -43,10 +43,10 @@ body {
 }
 
 .site-logo {
-  font-size: 22px;
-  font-weight: bold;
-  color: #2e5be3;
-  letter-spacing: 1px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #2e5be3;
+    letter-spacing: 1px;
 }
 
 .nav-links {
@@ -271,3 +271,4 @@ html {
   border-radius: 12px;
   margin-top: 20px;
 }
+
