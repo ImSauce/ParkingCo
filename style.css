@@ -86,7 +86,7 @@ body {
   margin-bottom: 20px;
 
   /* Gradient effect */
-  background: linear-gradient(90deg, #9835f5, #2e5be3);
+  background: linear-gradient(280deg, #9835f5 1%, #2e5be3 99%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
