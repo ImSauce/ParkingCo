@@ -67,3 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("about").scrollIntoView({ behavior: "smooth" });
   });
 });
+document.getElementById("reserveBtn").addEventListener("click", function (event) {
+  event.preventDefault();
+  document.getElementById("slots").scrollIntoView({ behavior: "smooth" });
+});

@@ -277,3 +277,32 @@ html {
   font-weight: 700;
   font-style: normal;
 }
+.slots-section {
+  width: 100%;
+  min-height: 100vh;
+  background: url("images/parking.jpeg") no-repeat center center/cover; /* adjust path if needed */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+}
+
+.slots-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5); /* overlay */
+  z-index: 0;
+}
+
+.slots-container {
+  position: relative;
+  z-index: 1; /* above overlay */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  max-width: 1200px;
+}
+
