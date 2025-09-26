@@ -39,7 +39,23 @@ body {
   gap: 50px; /* space between links */
 }
 
-.navbar-nav .nav-link {
+
+.site-logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2e5be3;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff;
   font-size: 15px;
   color: #fff;
   transition: 0.3s transform, 0.3s color; /* add transform transition */
@@ -264,6 +280,7 @@ html {
   border-radius: 12px;
   margin-top: 20px;
 }
+
 @font-face {
   font-family: 'Counterstream';
   src: url('fonts/CounterStreamDemoRegular.ttf') format('truetype');
@@ -277,3 +294,4 @@ html {
   font-weight: 700;
   font-style: normal;
 }
+
