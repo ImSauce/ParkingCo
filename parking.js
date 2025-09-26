@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
-  // Navbar 
+  // Navbar transparent at top, solid when scrolling
   window.addEventListener("scroll", function () {
     const navbar = document.querySelector(".navbar");
-    if (window.scrollY > 50) {
+    if (window.scrollY > 50) { // threshold for solid background
       navbar.classList.add("scrolled");
     } else {
-      navbar.classList.remove("scrolled");
+      navbar.classList.remove("scrolled"); // transparent at top
     }
   });
 
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         current = section.getAttribute("id");
       }
     });
+
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
       current = "contact";
     }
@@ -55,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Buttons
+  // Buttons scroll to sections
   document.getElementById("reserveBtn").addEventListener("click", function (event) {
     event.preventDefault();
     document.getElementById("slots").scrollIntoView({ behavior: "smooth" });
