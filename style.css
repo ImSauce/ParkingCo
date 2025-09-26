@@ -80,11 +80,18 @@ body {
 }
 
 .hero-content h1 {
-  font-family: 'Poppins', sans-serif; /* minimalist modern font */
-  font-weight: 600; /* semi-bold for emphasis */
+  font-family: 'OvercameBold', sans-serif; /* your custom TTF font */
+  font-weight: 700;
   font-size: 42px;
   margin-bottom: 20px;
-  color: #6ca8ff;
+
+  /* Gradient effect */
+  background: linear-gradient(90deg, #9835f5, #2e5be3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* Optional for spacing */
+  letter-spacing: 1px;
 }
 
 .hero-content p {
@@ -111,7 +118,7 @@ body {
 }
 
 .btn-primary {
-  background: #2e5be3;
+  background: linear-gradient(90deg, #7622c4, #2e5be3);
   color: #fff;
   border: none;
 }
@@ -256,4 +263,17 @@ html {
   height: 250px;
   border-radius: 12px;
   margin-top: 20px;
+}
+@font-face {
+  font-family: 'Counterstream';
+  src: url('fonts/CounterStreamDemoRegular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'OvercameBold';
+  src: url('fonts/OvercameDemoBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
 }
