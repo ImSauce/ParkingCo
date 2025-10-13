@@ -209,3 +209,59 @@ body {
   padding: 20px 0;
   font-size: 14px;
 }
+
+/* --- ABOUT PAGE --- */
+.about-page {
+  background: url('images/parking.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+  color: #fff;
+  
+}
+
+.about-page::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: 1;
+ 
+}
+
+.about-page .container-fluid {
+  position: relative;
+  z-index: 2;
+  align-items: center;
+   justify-content: space-between;
+  min-height: 100vh;
+  padding: 0.8%;
+  margin-left: 15%;
+  
+}
+
+.about-box {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px 40px;
+  border-radius: 8px;
+  width: 480px;
+
+}
+
+.about-box h2, 
+.about-box h3 {
+  font-family: 'Georgia', serif;
+}
+
+.about-box p,
+.about-box ul li {
+  font-size: 18px;
+  line-height: 1.7;
+  
+}
+
+/* RIGHT LOGO */
+.about-logo {
+  max-width: 350px;
+  filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+  margin-right: 100%;
+}
