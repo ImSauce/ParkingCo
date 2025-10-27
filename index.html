@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* 🔵 Reservation button hover style */
     .reservation-btn {
       border: 2px solid #0d6efd;
       color: #0d6efd;
@@ -37,11 +36,10 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link active nav-link-expand" href="#home">Home</a></li>
           <li class="nav-item">
-  <a class="nav-link nav-link-expand" href="Aboutus.html" onclick="window.location.href='Aboutus.html'; return false;">About</a>
-</li>
+            <a class="nav-link nav-link-expand" href="Aboutus.html" onclick="window.location.href='Aboutus.html'; return false;">About</a>
+          </li>
           <li class="nav-item"><a class="nav-link nav-link-expand" href="#slots">Slots</a></li>
           <li class="nav-item"><a class="nav-link nav-link-expand" href="#contact">Contact</a></li>
-
         </ul>
       </div>
     </div>
@@ -149,17 +147,16 @@
               <input type="number" step="0.01" name="total" class="form-control" required>
             </div>
           </div>
-          <div class="text-end mt-3">
-            <p>Subtotal: ₱0.00</p>
-            <p>Discount: ₱0.00</p>
-            <p>Total: ₱0.00</p>
-          </div>
-          <button type="submit" class="btn btn-primary w-100 mt-2">PROCEED PAYMENT</button>
 
-          <!-- ✅ Added Reservations Button -->
-          <a href="view_reservations.php" class="btn btn-outline-light w-100 mt-2 reservation-btn">
-            View Reservations
-          </a>
+          <!-- ✅ Display subtotal/discount/total -->
+          <div class="text-end mt-3">
+            <p>Subtotal: ₱<span id="subtotal">0.00</span></p>
+            <p>Discount: ₱<span id="discount">0.00</span></p>
+            <p><strong>Total: ₱<span id="total">0.00</span></strong></p>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 mt-2">PROCEED PAYMENT</button>
+          <a href="view_reservations.php" class="btn btn-outline-light w-100 mt-2 reservation-btn">View Reservations</a>
         </form>
       </div>
 
@@ -205,58 +202,59 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="parking.js"></script>
+
+  <!-- ✅ Auto subtotal + discount script -->
   <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const ratePerHour = 5; // ₱5 per hour
-  const startDate = document.querySelector('input[name="start_date"]');
-  const startTime = document.querySelector('input[name="start_time"]');
-  const endDate = document.querySelector('input[name="end_date"]');
-  const endTime = document.querySelector('input[name="end_time"]');
-  const promoInput = document.querySelector('input[name="promo_code"]');
-  const totalInput = document.querySelector('input[name="total"]');
+  document.addEventListener("DOMContentLoaded", () => {
+    const ratePerHour = 5;
+    const startDate = document.querySelector('input[name="start_date"]');
+    const startTime = document.querySelector('input[name="start_time"]');
+    const endDate = document.querySelector('input[name="end_date"]');
+    const endTime = document.querySelector('input[name="end_time"]');
+    const promoInput = document.querySelector('input[name="promo_code"]');
+    const totalInput = document.querySelector('input[name="total"]');
+    const subtotalDisplay = document.getElementById("subtotal");
+    const discountDisplay = document.getElementById("discount");
+    const totalDisplay = document.getElementById("total");
 
-  // display fields
-  const subtotalDisplay = document.querySelector("p:nth-of-type(1)");
-  const discountDisplay = document.querySelector("p:nth-of-type(2)");
-  const totalDisplay = document.querySelector("p:nth-of-type(3)");
+    function calculateTotal() {
+      if (!startDate.value || !startTime.value || !endDate.value || !endTime.value) return;
 
-  function calculateTotal() {
-    if (!startDate.value || !startTime.value || !endDate.value || !endTime.value) return;
+      const start = new Date(`${startDate.value}T${startTime.value}`);
+      const end = new Date(`${endDate.value}T${endTime.value}`);
+      if (end <= start) {
+        subtotalDisplay.textContent = "0.00";
+        discountDisplay.textContent = "0.00";
+        totalDisplay.textContent = "0.00";
+        totalInput.value = 0;
+        return;
+      }
 
-    const start = new Date(`${startDate.value}T${startTime.value}`);
-    const end = new Date(`${endDate.value}T${endTime.value}`);
+      const hours = Math.abs(end - start) / (1000 * 60 * 60);
+      const subtotal = hours * ratePerHour;
 
-    if (end <= start) {
-      subtotalDisplay.textContent = "Subtotal: ₱0.00";
-      discountDisplay.textContent = "Discount: ₱0.00";
-      totalDisplay.textContent = "Total: ₱0.00";
-      totalInput.value = 0;
-      return;
+      let discount = 0;
+      const promo = promoInput.value.trim().toUpperCase();
+      if (promo === "SAVE10") discount = subtotal * 0.10;
+      else if (promo === "PARK20") discount = subtotal * 0.20;
+
+      const total = subtotal - discount;
+      subtotalDisplay.textContent = subtotal.toFixed(2);
+      discountDisplay.textContent = discount.toFixed(2);
+      totalDisplay.textContent = total.toFixed(2);
+      totalInput.value = total.toFixed(2);
     }
 
-    const hours = Math.abs(end - start) / (1000 * 60 * 60);
-    const subtotal = hours * ratePerHour;
+    promoInput.addEventListener("input", () => {
+      const promo = promoInput.value.trim().toUpperCase();
+      if (promo === "SAVE10") alert("Promo applied: 10% OFF!");
+      else if (promo === "PARK20") alert("Promo applied: 20% OFF!");
+      calculateTotal();
+    });
 
-    // promo code logic (example: "SAVE10" gives 10% off)
-    let discount = 0;
-    if (promoInput.value.trim().toUpperCase() === "SAVE10") {
-      discount = subtotal * 0.1;
-    }
-
-    const total = subtotal - discount;
-
-    subtotalDisplay.textContent = `Subtotal: ₱${subtotal.toFixed(2)}`;
-    discountDisplay.textContent = `Discount: ₱${discount.toFixed(2)}`;
-    totalDisplay.textContent = `Total: ₱${total.toFixed(2)}`;
-    totalInput.value = total.toFixed(2);
-  }
-
-  [startDate, startTime, endDate, endTime, promoInput].forEach(el => {
-    el.addEventListener("input", calculateTotal);
+    [startDate, startTime, endDate, endTime].forEach(el => el.addEventListener("change", calculateTotal));
   });
-});
-</script>
+  </script>
 
 </body>
 </html>
