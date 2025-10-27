@@ -32,21 +32,17 @@ $result = $conn->query($sql);
                 <?php
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        // Combine date and time fields properly
-                        $start = $row['start_date'] . ' ' . $row['start_time'];
-                        $end = $row['end_date'] . ' ' . $row['end_time'];
-
                         echo "<tr>
                                 <td>{$row['id']}</td>
                                 <td>{$row['full_name']}</td>
                                 <td>{$row['email']}</td>
                                 <td>{$row['slot']}</td>
-                                <td>{$start}</td>
-                                <td>{$end}</td>
+                                <td>{$row['start_datetime']}</td>
+                                <td>{$row['end_datetime']}</td>
                                 <td>₱{$row['total']}</td>
                                 <td>
                                     <a href='edit.php?id={$row['id']}' class='btn btn-warning btn-sm me-2'>Edit</a>
-                                    <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick=\"return confirm('Are you sure you want to delete this reservation?');\">Delete</a>
+                                    <a href='delete.php?id={$row['id']}' class='btn btn-danger btn-sm'>Delete</a>
                                 </td>
                               </tr>";
                     }
