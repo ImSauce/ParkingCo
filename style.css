@@ -21,50 +21,64 @@ body {
 
 /* === NAVBAR === */
 .navbar {
-  background: transparent; /* transparent at top */
+  background: #000; /* solid black at top */
   padding: 15px 0;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 100;
-  transition: background 0.3s;
+  transition: background 0.4s ease;
 }
 
 .navbar.scrolled {
-  background: rgba(0, 0, 0, 0.9); /* dark background when scrolled */
+  background: rgba(0, 0, 0, 0.8); /* slightly transparent when scrolling */
+  backdrop-filter: blur(6px);
 }
 
 .navbar-nav {
-  gap: 50px; /* space between links */
+  gap: 50px;
 }
 
-
+/* Logo */
 .site-logo {
-    font-size: 22px;
-    font-weight: bold;
-    color: #2e5be3;
-    letter-spacing: 1px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #2e5be3;
+  letter-spacing: 1px;
 }
 
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
+/* Navbar Links */
+.navbar-nav .nav-link {
+  position: relative;
+  color: #fff !important;
+  font-weight: 500;
+  padding-bottom: 5px;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 15px;
-  color: #fff;
-  transition: 0.3s transform, 0.3s color; /* add transform transition */
+/* Underline Animation */
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background-color: #2e5be3;
+  transition: width 0.3s ease;
+}
+
+/* Active and Hover Effects */
+.navbar-nav .nav-link:hover::after,
+.navbar-nav .nav-link.active::after {
+  width: 100%;
 }
 
 .navbar-nav .nav-link:hover,
 .navbar-nav .nav-link.active {
-  color: #2e5be3;
-  transform: scale(1.15); /* expand link slightly on hover */
+  color: #2e5be3 !important;
+  transform: scale(1.1);
 }
 
 
