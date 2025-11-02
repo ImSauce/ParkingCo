@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-=======
 <?php
 // This is a placeholder for any future server-side logic (e.g., fetching real-time data or managing sessions).
 // For now, the file primarily serves the HTML/CSS/JS content.
@@ -13,7 +11,6 @@
 // $locations = fetch_parking_locations(); 
 */
 ?>
->>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,15 +32,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-<<<<<<< Updated upstream
-          <li class="nav-item"><a class="nav-link" href="index.php#home">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="Aboutus.php">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.php#slots">Slots</a></li>
-=======
           <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
           <li class="nav-item"><a class="nav-link active" href="Aboutus.php">About</a></li>
           <li class="nav-item"><a class="nav-link" href="index.php#reservation">Slots</a></li>
->>>>>>> Stashed changes
           <li class="nav-item"><a class="nav-link" href="index.php#contact">Contact</a></li>
         </ul>
       </div>
@@ -51,33 +42,6 @@
   </nav>
 
   <!-- ABOUT SECTION -->
-<<<<<<< Updated upstream
-  <section class="about-page">
-    <div class="container-fluid d-flex align-items-center min-vh-100">
-      <div class="row w-100 ps-5">
-        <div class="col-md-6">
-          <div class="about-box mb-4">
-            <h2 class="text-primary fw-bold">ABOUT US</h2>
-            <p>
-              ParkingCo was created to solve a common problem in urban locations: the difficulty many drivers experience trying to find parking.
-              That inefficient search for a paid parking spot is frustrating, and also contributes to a lack of flow and congestion.
-            </p>
-          </div>
-          <div class="about-box">
-            <h3 class="text-primary fw-bold">Group Members</h3>
-            <ul class="list-unstyled mt-3">
-              <li>YU, MIURA</li>
-              <li>CINCO, SAMUEL JAMES A.</li>
-              <li>MACAWILE, STEVEN LORENZ Y.</li>
-              <li>BAUTISTA, CLIFF JEFFERSON S.</li>
-              <li>AYUBAN, JENINA GAIL B.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Logo or Graphic -->
-        <div class="col-md-6 d-flex justify-content-center align-items-center">
-=======
   <section class="about-page d-flex align-items-center min-vh-100">
     <div class="container text-light">
       <div class="row align-items-center">
@@ -107,26 +71,18 @@
               <img src="images/cliff.png" alt="Cliff Bautista" class="member-img mb-2">
               <p>BAUTISTA, CLIFF JEFFERSON S.</p>
             </div>
-            <div class="member text-center">
-              <img src="images/jenina.jpg" alt="Jenina Ayuban" class="member-img mb-2">
-              <p>AYUBAN, JENINA GAIL B.</p>
-            </div>
           </div>
         </div>
 
         <!-- RIGHT SIDE: LOGO -->
         <div class="col-md-5 text-center">
->>>>>>> Stashed changes
           <img src="images/WEBLOGO.png" alt="ParkingCo Logo" class="img-fluid about-logo">
         </div>
       </div>
     </div>
   </section>
 
-<<<<<<< Updated upstream
-=======
   <!-- FOOTER -->
->>>>>>> Stashed changes
   <footer class="py-3 text-center bg-black text-light">
     <div class="container">
       <p>&copy; 2025 ParkingCo. All rights reserved.</p>
