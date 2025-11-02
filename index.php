@@ -1,15 +1,4 @@
 <?php
-// This is a placeholder for any future server-side logic (e.g., fetching real-time data or managing sessions).
-// For now, the file primarily serves the HTML/CSS/JS content.
-
-// If you were to connect to a database or fetch dynamic data, 
-// the PHP code would go here before the HTML output starts, and 
-// echo or print statements would be used within the HTML sections.
-
-/* Example PHP logic for dynamic content:
-// $page_title = "ParkingCo - Home";
-// $locations = fetch_parking_locations(); 
-*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
