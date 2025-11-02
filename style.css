@@ -647,5 +647,9 @@ html {
     position: relative; 
     /* Guaranteed to be above all non-positioned elements (like the slider's track) */
     z-index: 99;       
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
 }
 >>>>>>> Stashed changes

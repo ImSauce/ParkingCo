@@ -1,6 +1,9 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 <?php include 'connect.php'; ?>
 =======
+=======
+>>>>>>> Stashed changes
 <?php
 // This is a placeholder for any future server-side logic (e.g., fetching real-time data or managing sessions).
 // For now, the file primarily serves the HTML/CSS/JS content.
@@ -14,6 +17,9 @@
 // $locations = fetch_parking_locations(); 
 */
 ?>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
