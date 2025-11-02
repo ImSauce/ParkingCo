@@ -1,3 +1,19 @@
+<<<<<<< Updated upstream
+=======
+<?php
+// This is a placeholder for any future server-side logic (e.g., fetching real-time data or managing sessions).
+// For now, the file primarily serves the HTML/CSS/JS content.
+
+// If you were to connect to a database or fetch dynamic data, 
+// the PHP code would go here before the HTML output starts, and 
+// echo or print statements would be used within the HTML sections.
+
+/* Example PHP logic for dynamic content:
+// $page_title = "ParkingCo - Home";
+// $locations = fetch_parking_locations(); 
+*/
+?>
+>>>>>>> Stashed changes
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +35,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+<<<<<<< Updated upstream
           <li class="nav-item"><a class="nav-link" href="index.php#home">Home</a></li>
           <li class="nav-item"><a class="nav-link active" href="Aboutus.php">About</a></li>
           <li class="nav-item"><a class="nav-link" href="index.php#slots">Slots</a></li>
+=======
+          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="Aboutus.php">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php#reservation">Slots</a></li>
+>>>>>>> Stashed changes
           <li class="nav-item"><a class="nav-link" href="index.php#contact">Contact</a></li>
         </ul>
       </div>
@@ -29,6 +51,7 @@
   </nav>
 
   <!-- ABOUT SECTION -->
+<<<<<<< Updated upstream
   <section class="about-page">
     <div class="container-fluid d-flex align-items-center min-vh-100">
       <div class="row w-100 ps-5">
@@ -54,12 +77,56 @@
 
         <!-- Logo or Graphic -->
         <div class="col-md-6 d-flex justify-content-center align-items-center">
+=======
+  <section class="about-page d-flex align-items-center min-vh-100">
+    <div class="container text-light">
+      <div class="row align-items-center">
+        <!-- LEFT SIDE: TEXT -->
+        <div class="col-md-7">
+          <h2 class="fw-bold text-primary mb-4">ABOUT US</h2>
+          <p class="fs-5 mb-5">
+            ParkingCo was created to solve a common problem in urban locations: the difficulty many drivers experience trying to find parking. 
+            That inefficient search for a paid parking spot is frustrating, and also contributes to a lack of flow and congestion.
+          </p>
+
+          <h3 class="fw-bold text-primary mb-4">Group Members</h3>
+          <div class="d-flex flex-wrap gap-4 justify-content-start">
+            <div class="member text-center">
+              <img src="images/miura.png" alt="Miura Yu" class="member-img mb-2">
+              <p>YU, MIURA</p>
+            </div>
+            <div class="member text-center">
+              <img src="images/samuel.png" alt="Samuel Cinco" class="member-img mb-2">
+              <p>CINCO, SAMUEL JAMES A.</p>
+            </div>
+            <div class="member text-center">
+              <img src="images/steven.png" alt="Steven Macawile" class="member-img mb-2">
+              <p>MACAWILE, STEVEN LORENZ Y.</p>
+            </div>
+            <div class="member text-center">
+              <img src="images/cliff.png" alt="Cliff Bautista" class="member-img mb-2">
+              <p>BAUTISTA, CLIFF JEFFERSON S.</p>
+            </div>
+            <div class="member text-center">
+              <img src="images/jenina.jpg" alt="Jenina Ayuban" class="member-img mb-2">
+              <p>AYUBAN, JENINA GAIL B.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE: LOGO -->
+        <div class="col-md-5 text-center">
+>>>>>>> Stashed changes
           <img src="images/WEBLOGO.png" alt="ParkingCo Logo" class="img-fluid about-logo">
         </div>
       </div>
     </div>
   </section>
 
+<<<<<<< Updated upstream
+=======
+  <!-- FOOTER -->
+>>>>>>> Stashed changes
   <footer class="py-3 text-center bg-black text-light">
     <div class="container">
       <p>&copy; 2025 ParkingCo. All rights reserved.</p>
