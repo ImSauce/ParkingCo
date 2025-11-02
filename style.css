@@ -861,3 +861,10 @@ html {
     gap: 10px;
   }
 }
+/* --- CRITICAL FIX: Ensure Select Location button is clickable --- */
+.select-location-btn {
+    /* Required for z-index to work */
+    position: relative; 
+    /* Guaranteed to be above all non-positioned elements (like the slider's track) */
+    z-index: 99;       
+}
