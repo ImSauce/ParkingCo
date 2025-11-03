@@ -131,13 +131,13 @@ mysqli_close($conn);
           <img src="images/WEBLOGO.png" alt="ParkingCo Logo" height="60">
           <div>
             <h4 class="mb-0">Admin Panel</h4>
-            <small class="text-muted">Management Dashboard</small>
+            <small class="text-white">Management Dashboard</small>
           </div>
         </div>
         <div class="d-flex align-items-center gap-3">
           <div class="text-end">
             <div class="fw-bold"><?php echo $_SESSION['admin_name']; ?></div>
-            <small class="text-muted">Administrator</small>
+            <small class="text-white">Administrator</small>
           </div>
           <a href="admin-logout.php" class="btn btn-logout">
             <i class="fas fa-sign-out-alt"></i> Logout
@@ -193,21 +193,21 @@ mysqli_close($conn);
         <a href="user-maintenance.php" class="action-card">
           <div class="action-icon"><i class="fas fa-users-cog"></i></div>
           <h5>User Maintenance</h5>
-          <p class="text-muted mb-0">Add, Edit, Delete Users</p>
+          <p class="text-white mb-0">Add, Edit, Delete Users</p>
         </a>
       </div>
       <div class="col-md-4 mb-4">
         <a href="product-maintenance.php" class="action-card">
           <div class="action-icon"><i class="fas fa-boxes"></i></div>
           <h5>Product Maintenance</h5>
-          <p class="text-muted mb-0">Manage Products & Images</p>
+          <p class="text-white mb-0">Manage Products & Images</p>
         </a>
       </div>
       <div class="col-md-4 mb-4">
         <a href="view_reservations.php" class="action-card">
           <div class="action-icon"><i class="fas fa-list-alt"></i></div>
           <h5>View Reservations</h5>
-          <p class="text-muted mb-0">Monitor All Bookings</p>
+          <p class="text-white mb-0">Monitor All Bookings</p>
         </a>
       </div>
     </div>

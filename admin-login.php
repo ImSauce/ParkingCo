@@ -96,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand fw-bold text-primary" href="index.html"> 
+      <a class="navbar-brand fw-bold text-primary" href="index.php"> 
         <img src="images/WEBLOGO.png" alt="ParkingCo Logo" height="80"> 
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="Aboutus.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="LogIn.html">User Login</a></li>
         </ul>

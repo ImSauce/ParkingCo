@@ -1,4 +1,6 @@
 <?php
+include 'connect.php';
+$products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY product_name ASC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -194,7 +196,7 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link active nav-link-expand" href="#home">Home</a></li>
           <li class="nav-item">
-            <a class="nav-link nav-link-expand" href="Aboutus.php" onclick="window.location.href='Aboutus.php'; return false;">About</a>
+            <a class="nav-link nav-link-expand" href="Aboutus.html" onclick="window.location.href='Aboutus.html'; return false;">About</a>
           </li>
           <li class="nav-item"><a class="nav-link nav-link-expand" href="#reservation">Reserve</a></li>
           <li class="nav-item"><a class="nav-link nav-link-expand" href="#contact">Contact</a></li>
@@ -253,6 +255,18 @@
                 <option value="">Choose location first</option>
               </select>
             </div>
+             <div class="col-12">
+    <label>Select Product / Service</label>
+    <select name="product_id" class="form-select" required>
+        <option value="0" data-price="0" selected>None — ₱0.00</option>
+
+        <?php while ($p = mysqli_fetch_assoc($products)): ?>
+            <option value="<?= $p['id'] ?>" data-price="<?= $p['price'] ?>">
+                <?= htmlspecialchars($p['product_name']) ?> — ₱<?= number_format($p['price'], 2) ?>
+            </option>
+        <?php endwhile; ?>
+    </select>
+</div>
             <div class="col-md-6">
               <label>Enter Start Date</label>
               <input type="date" name="start_date" class="form-control" required>
@@ -287,7 +301,6 @@
           </div>
 
           <button type="submit" class="btn btn-primary w-100 mt-2">PROCEED PAYMENT</button>
-          <a href="view_reservations.php" class="btn btn-outline-light w-100 mt-2 reservation-btn">View Reservations</a>
         </form>
       </div>
 
@@ -456,7 +469,7 @@
         <div class="col-lg-4 col-md-6">
           <div class="footer-widget">
             <img src="images/WEBLOGO.png" alt="ParkingCo Logo" height="60" class="mb-3">
-            <p class="text-muted">
+            <p class="text-white">
               Making parking hassle-free with smart reservation technology. 
               Book your spot in seconds and drive with confidence.
             </p>
@@ -500,7 +513,7 @@
         <div class="col-lg-3 col-md-6">
           <div class="footer-widget">
             <h5 class="footer-title">Stay Updated</h5>
-            <p class="text-muted mb-3">Subscribe to get special offers and parking tips!</p>
+            <p class="text-white mb-3">Subscribe to get special offers and parking tips!</p>
             <form class="newsletter-form">
               <div class="input-group">
                 <input type="email" class="form-control" placeholder="Your email" required>
@@ -510,7 +523,7 @@
               </div>
             </form>
             <div class="payment-methods mt-4">
-              <small class="text-muted d-block mb-2">We Accept:</small>
+              <small class="text-white d-block mb-2">We Accept:</small>
               <i class="fab fa-cc-visa fa-2x me-2"></i>
               <i class="fab fa-cc-mastercard fa-2x me-2"></i>
               <i class="fab fa-cc-paypal fa-2x"></i>
@@ -523,7 +536,7 @@
       <div class="footer-bottom mt-4 pt-4 border-top border-secondary">
         <div class="row align-items-center">
           <div class="col-md-6 text-center text-md-start">
-            <p class="mb-0 text-muted">
+            <p class="mb-0 text-white">
               &copy; 2025 ParkingCo. All rights reserved.
             </p>
           </div>
@@ -543,289 +556,243 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <!-- Floor Data -->
-  <script>
-// Simulated floor occupancy data (in real app, fetch from database)
-const floorData = {
-  'Quezon City': [
-    { floor: 'Floor 1', occupied: 45, capacity: 100 },
-    { floor: 'Floor 2', occupied: 78, capacity: 100 },
-    { floor: 'Floor 3', occupied: 100, capacity: 100 }
-  ],
-  'Makati': [
-    { floor: 'Floor 1', occupied: 92, capacity: 100 },
-    { floor: 'Floor 2', occupied: 35, capacity: 100 }
-  ],
-  'BGC': [
-    { floor: 'Floor 1', occupied: 67, capacity: 100 }
-  ]
-};
+<script>
+  // Simulated floor occupancy data (in real app, fetch from database)
+  const floorData = {
+    'Quezon City': [
+      { floor: 'Floor 1', occupied: 45, capacity: 100 },
+      { floor: 'Floor 2', occupied: 78, capacity: 100 },
+      { floor: 'Floor 3', occupied: 100, capacity: 100 }
+    ],
+    'Makati': [
+      { floor: 'Floor 1', occupied: 92, capacity: 100 },
+      { floor: 'Floor 2', occupied: 35, capacity: 100 }
+    ],
+    'BGC': [
+      { floor: 'Floor 1', occupied: 67, capacity: 100 }
+    ]
+  };
 
-let currentRate = 5;
-let selectedLocationName = '';
+  let currentRate = 5;
+  let selectedLocationName = '';
 
-// Get all necessary elements once (outside of functions for performance)
-const selectedLocationInput = document.getElementById('selectedLocationInput');
-const floorDetailsSection = document.getElementById('floorDetails');
-const floorList = document.getElementById('floorList');
-const floorSelect = document.getElementById('floorSelect');
-const startDate = document.querySelector('input[name="start_date"]');
-const startTime = document.querySelector('input[name="start_time"]');
-const endDate = document.querySelector('input[name="end_date"]');
-const endTime = document.querySelector('input[name="end_time"]');
-const promoInput = document.querySelector('input[name="promo_code"]');
-const totalInput = document.querySelector('input[name="total"]');
-const subtotalDisplay = document.getElementById("subtotal");
-const discountDisplay = document.getElementById("discount");
-const totalDisplay = document.getElementById("total");
+  function selectLocation(location, floors, rate, id) {
+    selectedLocationName = location;
+    currentRate = rate;
 
+    document.getElementById('selectedLocationInput').value = location;
 
-// Total Calculation Function (Global access via window for selectLocation)
-window.calculateTotal = function() {
-  if (!startDate.value || !startTime.value || !endDate.value || !endTime.value || !selectedLocationName) {
-    // Reset displays if any necessary field is empty
-    subtotalDisplay.textContent = "0.00";
-    discountDisplay.textContent = "0.00";
-    totalDisplay.textContent = "0.00";
-    totalInput.value = 0;
-    return;
-  }
+    const floorDetailsSection = document.getElementById('floorDetails');
+    const floorList = document.getElementById('floorList');
+    const floorSelect = document.getElementById('floorSelect');
 
-  const start = new Date(`${startDate.value}T${startTime.value}`);
-  const end = new Date(`${endDate.value}T${endTime.value}`);
-  
-  if (end <= start) {
-    subtotalDisplay.textContent = "0.00";
-    discountDisplay.textContent = "0.00";
-    totalDisplay.textContent = "0.00";
-    totalInput.value = 0;
-    return;
-  }
+    floorDetailsSection.classList.add('active');
+    floorList.innerHTML = '';
+    floorSelect.innerHTML = '<option value="">Select a floor</option>';
+    floorSelect.disabled = false;
 
-  // Calculate hours, rounded up (e.g., 1.5 hours becomes 2 hours)
-  const hours = Math.ceil(Math.abs(end - start) / (1000 * 60 * 60)); 
-  const subtotal = hours * currentRate;
+    document.querySelectorAll('.selected-location-indicator').forEach(el => {
+      el.classList.remove('active');
+    });
 
-  let discount = 0;
-  const promo = promoInput.value.trim().toUpperCase();
-  if (promo === "SAVE10") discount = subtotal * 0.10;
-  else if (promo === "PARK20") discount = subtotal * 0.20;
+    document.getElementById(`selected-${id}`).classList.add('active');
 
-  const total = subtotal - discount;
-  
-  subtotalDisplay.textContent = total > 0 ? subtotal.toFixed(2) : "0.00";
-  discountDisplay.textContent = total > 0 ? discount.toFixed(2) : "0.00";
-  totalDisplay.textContent = total > 0 ? total.toFixed(2) : "0.00";
-  totalInput.value = total > 0 ? total.toFixed(2) : 0;
-}
+    const floors_data = floorData[location];
+    floors_data.forEach(floor => {
+      const percentage = (floor.occupied / floor.capacity) * 100;
+      let status = 'available';
+      let statusText = 'Available';
 
+      if (percentage >= 100) {
+        status = 'full';
+        statusText = 'Full';
+      } else if (percentage >= 70) {
+        status = 'limited';
+        statusText = 'Limited';
+      }
 
-window.selectLocation = function(location, floors, rate, id) {
-  selectedLocationName = location;
-  currentRate = rate;
+      const available = floor.capacity - floor.occupied;
 
-  // 1. Update form input and indicators
-  selectedLocationInput.value = location;
-  floorDetailsSection.classList.add('active');
-  document.querySelectorAll('.selected-location-indicator').forEach(el => {
-    el.classList.remove('active');
-  });
-  document.getElementById(`selected-${id}`).classList.add('active');
-
-  // 2. Reset and Enable Floor Select Dropdown
-  floorList.innerHTML = '';
-  floorSelect.innerHTML = '<option value="">Select a floor</option>';
-  floorSelect.disabled = false;
-
-  // 3. Populate floors and dropdown
-  const floors_data = floorData[location];
-  floors_data.forEach(floor => {
-    // ... (rest of the floor display logic remains the same) ...
-    const percentage = (floor.occupied / floor.capacity) * 100;
-    let status = 'available';
-    let statusText = 'Available';
-
-    if (percentage >= 100) {
-      status = 'full';
-      statusText = 'Full';
-    } else if (percentage >= 70) {
-      status = 'limited';
-      statusText = 'Limited';
-    }
-
-    const available = floor.capacity - floor.occupied;
-
-    // Add to floor details display
-    const floorItem = `
-      <div class="floor-item">
-        <div class="floor-name">${floor.floor}</div>
-        <div class="floor-capacity">
-          <span class="capacity-text">${available}/${floor.capacity} available</span>
-          <div class="progress-bar-custom">
-            <div class="progress-fill ${status}" style="width: ${percentage}%"></div>
+      const floorItem = `
+        <div class="floor-item">
+          <div class="floor-name">${floor.floor}</div>
+          <div class="floor-capacity">
+            <span class="capacity-text">${available}/${floor.capacity} available</span>
+            <div class="progress-bar-custom">
+              <div class="progress-fill ${status}" style="width: ${percentage}%"></div>
+            </div>
+            <span class="floor-status ${status}">${statusText}</span>
           </div>
-          <span class="floor-status ${status}">${statusText}</span>
         </div>
-      </div>
-    `;
-    floorList.innerHTML += floorItem;
+      `;
+      floorList.innerHTML += floorItem;
 
-    // Add to floor select dropdown (exclude full floors)
-    if (status !== 'full') {
-      const option = document.createElement('option');
-      option.value = floor.floor;
-      option.textContent = `${floor.floor} (${available} slots available)`;
-      floorSelect.appendChild(option);
-    }
-  });
+      if (status !== 'full') {
+        const option = document.createElement('option');
+        option.value = floor.floor;
+        option.textContent = `${floor.floor} (${available} slots available)`;
+        floorSelect.appendChild(option);
+      }
+    });
 
-  // 4. Recalculate total with new rate and potentially selected floor
-  calculateTotal();
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  // --- Event Listeners for Total Calculation ---
-  const dateAndTimeInputs = [startDate, startTime, endDate, endTime];
-  dateAndTimeInputs.forEach(el => el.addEventListener("change", calculateTotal));
-  promoInput.addEventListener("input", calculateTotal); 
-  
-  // Also recalculate if the floor is selected/changed (optional logic based on floor)
-  floorSelect.addEventListener("change", calculateTotal);
-
-  // --- INITIALIZE FORM STATE ---
-  // Automatically select the first location on page load for initial setup.
-  const initialLocationSlide = document.querySelector('.location-slide');
-  if (initialLocationSlide) {
-      const location = initialLocationSlide.dataset.location;
-      const floors = initialLocationSlide.dataset.floors;
-      const rate = initialLocationSlide.dataset.rate;
-      const id = 'qc'; // ID for the first location
-      window.selectLocation(location, floors, rate, id);
+    calculateTotal();
   }
-});
-  </script>
+
+  // ✅ UPDATED CALCULATION SCRIPT INCLUDING PRODUCT PRICE
+  document.addEventListener("DOMContentLoaded", () => {
+    const startDate = document.querySelector('input[name="start_date"]');
+    const startTime = document.querySelector('input[name="start_time"]');
+    const endDate = document.querySelector('input[name="end_date"]');
+    const endTime = document.querySelector('input[name="end_time"]');
+    const promoInput = document.querySelector('input[name="promo_code"]');
+    const productSelect = document.querySelector('select[name="product_id"]');
+    const totalInput = document.querySelector('input[name="total"]');
+
+    const subtotalDisplay = document.getElementById("subtotal");
+    const discountDisplay = document.getElementById("discount");
+    const totalDisplay = document.getElementById("total");
+
+    window.calculateTotal = function () {
+
+      if (!startDate.value || !startTime.value || !endDate.value || !endTime.value) return;
+
+      const start = new Date(`${startDate.value}T${startTime.value}`);
+      const end = new Date(`${endDate.value}T${endTime.value}`);
+
+      if (end <= start) {
+        subtotalDisplay.textContent = "0.00";
+        discountDisplay.textContent = "0.00";
+        totalDisplay.textContent = "0.00";
+        totalInput.value = 0;
+        return;
+      }
+
+      // ✅ Parking hours
+      const hours = Math.abs(end - start) / (1000 * 60 * 60);
+      let subtotal = hours * currentRate;
+
+      // ✅ Product Price
+      const selectedOption = productSelect.options[productSelect.selectedIndex];
+      const productPrice = Number(selectedOption.dataset.price || 0);
+      subtotal += productPrice;
+
+      // ✅ Promo
+      let discount = 0;
+      const promo = promoInput.value.trim().toUpperCase();
+
+      if (promo === "SAVE10") discount = subtotal * 0.10;
+      else if (promo === "PARK20") discount = subtotal * 0.20;
+
+      const total = subtotal - discount;
+
+      subtotalDisplay.textContent = subtotal.toFixed(2);
+      discountDisplay.textContent = discount.toFixed(2);
+      totalDisplay.textContent = total.toFixed(2);
+      totalInput.value = total.toFixed(2);
+    };
+
+    // ✅ Recalculate on promo input
+    promoInput.addEventListener("input", () => {
+      const promo = promoInput.value.trim().toUpperCase();
+      if (promo === "SAVE10") alert("Promo applied: 10% OFF!");
+      else if (promo === "PARK20") alert("Promo applied: 20% OFF!");
+      calculateTotal();
+    });
+
+    // ✅ Recalculate on date/time changes
+    [startDate, startTime, endDate, endTime].forEach(el => el.addEventListener("change", calculateTotal));
+
+    // ✅ Recalculate when product changes
+    productSelect.addEventListener("change", calculateTotal);
+
+  });
+</script>
+
 
   <!-- Location Slider Script -->
   <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const slider = document.getElementById('locationSlider');
-  const slides = document.querySelectorAll('.location-slide');
-  const dots = document.querySelectorAll('.dot');
-  let currentSlide = 0;
-  let startX = 0;
-  let isDragging = false;
-  let isClick = true; 
+  document.addEventListener("DOMContentLoaded", () => {
+    const slider = document.getElementById('locationSlider');
+    const slides = document.querySelectorAll('.location-slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    let startX = 0;
+    let isDragging = false;
 
-  // Update slider position
-  function updateSlider() {
-    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+    // Update slider position
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      // Update active slide
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+      
+      // Update active dot
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
 
-    slides.forEach((slide, index) => {
-      slide.classList.toggle('active', index === currentSlide);
-    });
+    // Go to specific slide
+    function goToSlide(index) {
+      currentSlide = Math.max(0, Math.min(index, slides.length - 1));
+      updateSlider();
+    }
 
+    // Dot navigation
     dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentSlide);
+      dot.addEventListener('click', () => goToSlide(index));
     });
-  }
 
-  // Go to specific slide
-  function goToSlide(index) {
-    currentSlide = Math.max(0, Math.min(index, slides.length - 1));
-    updateSlider();
-  }
-
-  // Dot navigation
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => goToSlide(index));
-  });
-
-  // Touch/Mouse events for swiping
-  slider.addEventListener('mousedown', startDrag);
-  slider.addEventListener('touchstart', startDrag, { passive: true });
-
-  // Attach drag listeners to the document for robustness
-  document.addEventListener('mousemove', drag);
-  document.addEventListener('touchmove', drag, { passive: false });
-  
-  document.addEventListener('mouseup', endDrag);
-  document.addEventListener('touchend', endDrag);
-  
-  slider.addEventListener('mouseleave', () => {
-    if (isDragging) endDrag({ pageX: startX, changedTouches: [{ pageX: startX }] });
-  });
-
-  function startDrag(e) {
-    // === CRITICAL FIX ===
-    // If the mousedown/touchstart event originated on the "Select Location" button,
-    // we must prevent the drag from ever starting. The button's native click will then fire on mouseup.
-    if (e.target.closest('.select-location-btn')) {
-        isDragging = false;
-        return; 
-    }
-    // ====================
-
-    isDragging = true;
-    isClick = true; 
-    startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
-    slider.style.cursor = 'grabbing';
-    slider.style.transition = 'none';
-  }
-
-  function drag(e) {
-    if (!isDragging) return;
+    // Touch/Mouse events for swiping
+    slider.addEventListener('mousedown', startDrag);
+    slider.addEventListener('touchstart', startDrag);
     
-    const currentX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
-    const diff = currentX - startX;
+    slider.addEventListener('mousemove', drag);
+    slider.addEventListener('touchmove', drag);
     
-    // Check if movement is significant enough to be considered a drag
-    if (Math.abs(diff) > 5) {
-        isClick = false;
-    }
-    
-    // Visually drag the slide
-    const slideWidth = slides[0].offsetWidth;
-    const offset = currentSlide * slideWidth;
-    slider.style.transform = `translateX(${-offset + diff}px)`;
-    
-    if (e.cancelable) e.preventDefault();
-  }
+    slider.addEventListener('mouseup', endDrag);
+    slider.addEventListener('mouseleave', endDrag);
+    slider.addEventListener('touchend', endDrag);
 
-  function endDrag(e) {
-    if (!isDragging) return;
-    isDragging = false;
-    slider.style.cursor = 'grab';
-    slider.style.transition = 'transform 0.5s ease';
-    
-    // If it was a click (no drag), just snap back to position and exit. 
-    // The button's click event (if any) will fire next.
-    if (isClick) {
-        updateSlider(); 
-        return; 
+    function startDrag(e) {
+      isDragging = true;
+      startX = e.type.includes('mouse') ? e.pageX : e.touches[0].pageX;
+      slider.style.cursor = 'grabbing';
     }
 
-    const endX = e.type.includes('mouse') ? e.pageX : e.changedTouches[0].pageX;
-    const diff = startX - endX;
-    
-    const swipeThreshold = slider.offsetWidth * 0.2; 
-    
-    if (Math.abs(diff) > swipeThreshold) {
-      if (diff > 0) { // Swiped left (Next slide)
-        currentSlide = Math.min(currentSlide + 1, slides.length - 1);
-      } else { // Swiped right (Previous slide)
-        currentSlide = Math.max(currentSlide - 1, 0);
+    function drag(e) {
+      if (!isDragging) return;
+      e.preventDefault();
+    }
+
+    function endDrag(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      slider.style.cursor = 'grab';
+      
+      const endX = e.type.includes('mouse') ? e.pageX : e.changedTouches[0].pageX;
+      const diff = startX - endX;
+      
+      // Swipe threshold
+      if (Math.abs(diff) > 50) {
+        if (diff > 0 && currentSlide < slides.length - 1) {
+          currentSlide++;
+        } else if (diff < 0 && currentSlide > 0) {
+          currentSlide--;
+        }
+        updateSlider();
       }
     }
-    
-    updateSlider();
-  }
 
-  // Auto-advance every 5 seconds
-  setInterval(() => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    updateSlider();
-  }, 5000);
-});
+    // Auto-advance every 5 seconds
+    setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlider();
+    }, 5000);
+  });
   </script>
-<script src="parking.js"></script>
+ <script src="parking.js"></script>
 </body>
 </html>
