@@ -1,17 +1,14 @@
-// === FORM HANDLING ===
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     const loginBtn = document.querySelector('.login-btn');
     const inputs = document.querySelectorAll('input');
 
-    // Handle form submission
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
         const username = document.getElementById('username').value.trim();
         const password = document.getElementById('password').value.trim();
         
-        // Basic validation
         if (!username || !password) {
             showMessage('Please fill in all fields', 'error');
             return;
@@ -27,54 +24,41 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Simulate login process
         loginBtn.textContent = 'LOGGING IN...';
         loginBtn.disabled = true;
         
-        // Simulate API call delay
         setTimeout(() => {
-            // Here you would normally send the data to your server
-            // For demo purposes, we'll just show a success message
+
             
-            // Example of successful login:
             showMessage('Login successful! Redirecting...', 'success');
             
             setTimeout(() => {
-                // Redirect to dashboard or main page
-                window.location.href = 'index.html'; // Change this to your main page
+                window.location.href = 'index.html'; 
             }, 1500);
             
-            // Reset button state (in case redirect fails)
             loginBtn.textContent = 'LOGIN';
             loginBtn.disabled = false;
             
         }, 2000);
     });
 
-    // Handle Sign Up button
     document.querySelector('.signup-btn').addEventListener('click', function() {
-        window.location.href = 'SignUp.html'; // Make sure this file exists
+        window.location.href = 'SignUp.html'; 
     });
 
-    // Handle social login buttons
     document.querySelector('.google-btn').addEventListener('click', function() {
         showMessage('Google login would be implemented here', 'info');
-        // Implement Google OAuth here
     });
 
     document.querySelector('.facebook-btn').addEventListener('click', function() {
         showMessage('Facebook login would be implemented here', 'info');
-        // Implement Facebook OAuth here
     });
 
-    // Handle forgot password link
     document.querySelector('.forgot-password a').addEventListener('click', function(e) {
         e.preventDefault();
         showMessage('Password reset functionality would be implemented here', 'info');
-        // You could redirect to a password reset page or show a modal
     });
 
-    // Add interactive effects to inputs
     inputs.forEach(input => {
         const wrapper = input.parentElement;
         
@@ -86,29 +70,23 @@ document.addEventListener('DOMContentLoaded', function() {
             wrapper.classList.remove('focused');
         });
 
-        // Real-time validation feedback
         input.addEventListener('input', function() {
             removeInputError(input);
         });
     });
 });
 
-// === UTILITY FUNCTIONS ===
 
-// Show messages to user
 function showMessage(message, type = 'info') {
-    // Remove existing messages
     const existingMessage = document.querySelector('.message');
     if (existingMessage) {
         existingMessage.remove();
     }
 
-    // Create message element
     const messageDiv = document.createElement('div');
     messageDiv.className = `message message-${type}`;
     messageDiv.textContent = message;
     
-    // Style the message
     messageDiv.style.cssText = `
         position: fixed;
         top: 20px;
@@ -123,7 +101,6 @@ function showMessage(message, type = 'info') {
         animation: slideIn 0.3s ease;
     `;
 
-    // Set colors based on type
     switch(type) {
         case 'success':
             messageDiv.style.backgroundColor = '#28a745';
@@ -137,7 +114,6 @@ function showMessage(message, type = 'info') {
             break;
     }
 
-    // Add CSS animation
     const style = document.createElement('style');
     style.textContent = `
         @keyframes slideIn {
@@ -151,10 +127,8 @@ function showMessage(message, type = 'info') {
     `;
     document.head.appendChild(style);
 
-    // Add to page
     document.body.appendChild(messageDiv);
 
-    // Auto remove after 4 seconds
     setTimeout(() => {
         messageDiv.style.animation = 'slideOut 0.3s ease';
         setTimeout(() => {
@@ -165,12 +139,10 @@ function showMessage(message, type = 'info') {
     }, 4000);
 }
 
-// Add error styling to input
 function addInputError(input, message) {
     input.style.borderColor = '#dc3545';
     input.style.boxShadow = '0 0 10px rgba(220, 53, 69, 0.3)';
     
-    // Add error message below input
     let errorMsg = input.parentElement.querySelector('.error-message');
     if (!errorMsg) {
         errorMsg = document.createElement('div');
@@ -186,7 +158,6 @@ function addInputError(input, message) {
     errorMsg.textContent = message;
 }
 
-// Remove error styling from input
 function removeInputError(input) {
     input.style.borderColor = '';
     input.style.boxShadow = '';
@@ -197,15 +168,12 @@ function removeInputError(input) {
     }
 }
 
-// === NAVIGATION HELPERS ===
 
-// Handle navigation links
 document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-links a');
     
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // If it's a hash link (starts with #), prevent default and handle smooth scroll
             if (this.getAttribute('href').startsWith('#')) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href').substring(1);
@@ -221,15 +189,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// === KEYBOARD SHORTCUTS ===
 document.addEventListener('keydown', function(e) {
-    // Enter key submits form when focused on inputs
     if (e.key === 'Enter' && (e.target.id === 'username' || e.target.id === 'password')) {
         e.preventDefault();
         document.getElementById('loginForm').dispatchEvent(new Event('submit'));
     }
     
-    // Escape key clears form
     if (e.key === 'Escape') {
         document.getElementById('username').value = '';
         document.getElementById('password').value = '';

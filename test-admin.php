@@ -1,10 +1,10 @@
 <?php
-// Test file to debug admin login
+
 include 'connect.php';
 
 echo "<h2>Admin Login Debugging</h2>";
 
-// Test 1: Check database connection
+
 echo "<h3>Test 1: Database Connection</h3>";
 if ($conn) {
     echo "✅ Connected to database successfully<br><br>";
@@ -13,7 +13,7 @@ if ($conn) {
     exit();
 }
 
-// Test 2: Check if admins table exists
+
 echo "<h3>Test 2: Check Admins Table</h3>";
 $result = mysqli_query($conn, "SHOW TABLES LIKE 'admins'");
 if (mysqli_num_rows($result) > 0) {
@@ -23,7 +23,7 @@ if (mysqli_num_rows($result) > 0) {
     exit();
 }
 
-// Test 3: Check admin data
+
 echo "<h3>Test 3: Admin Data</h3>";
 $sql = "SELECT * FROM admins WHERE username = 'Admin'";
 $result = mysqli_query($conn, $sql);
@@ -35,7 +35,6 @@ if (mysqli_num_rows($result) > 0) {
     echo "<strong>Password Hash:</strong> " . substr($admin['password'], 0, 30) . "...<br>";
     echo "<strong>Hash Length:</strong> " . strlen($admin['password']) . " characters<br><br>";
     
-    // Test 4: Test password verification
     echo "<h3>Test 4: Password Verification</h3>";
     $test_password = "admin@123";
     
@@ -49,7 +48,6 @@ if (mysqli_num_rows($result) > 0) {
         echo "<br><strong>Solution:</strong> The password hash is wrong. Run this SQL:<br>";
         echo "<textarea style='width:100%; height:100px; font-family:monospace;'>";
         
-        // Generate correct hash
         $correct_hash = password_hash($test_password, PASSWORD_DEFAULT);
         echo "UPDATE admins SET password = '$correct_hash' WHERE username = 'Admin';";
         echo "</textarea><br><br>";
@@ -64,7 +62,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "</textarea><br><br>";
 }
 
-// Test 5: Show all admins
+
 echo "<h3>Test 5: All Admin Accounts</h3>";
 $all_admins = mysqli_query($conn, "SELECT id, username, full_name, email FROM admins");
 if (mysqli_num_rows($all_admins) > 0) {

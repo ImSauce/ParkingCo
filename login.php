@@ -2,21 +2,18 @@
 session_start();
 include 'connect.php'; 
 
-// If user submits login form
 $login_error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = $_POST['password'];
 
-    // Find user
     $query = "SELECT * FROM users WHERE username='$username' LIMIT 1";
     $result = mysqli_query($conn, $query);
 
     if ($result && mysqli_num_rows($result) === 1) {
         $user = mysqli_fetch_assoc($result);
 
-        // Verify password
         if (password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
@@ -43,7 +40,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-black">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold text-primary" href="index.php"> 
@@ -63,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </nav>
 
-<!-- Main Container -->
 <div class="main-container">
     <div class="login-container">
         <h1 class="login-title">Login</h1>

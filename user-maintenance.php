@@ -7,7 +7,7 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
 include 'connect.php';
 
-// Handle Add User
+
 if (isset($_POST['add_user'])) {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -26,7 +26,7 @@ if (isset($_POST['add_user'])) {
     }
 }
 
-// Handle Delete User
+
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
     $sql = "DELETE FROM users WHERE id = $id";
@@ -35,7 +35,7 @@ if (isset($_GET['delete'])) {
     }
 }
 
-// Handle Edit User
+
 if (isset($_POST['edit_user'])) {
     $id = intval($_POST['id']);
     $username = mysqli_real_escape_string($conn, $_POST['username']);
@@ -53,7 +53,7 @@ if (isset($_POST['edit_user'])) {
     }
 }
 
-// Fetch all users
+
 $users = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
@@ -94,7 +94,7 @@ $users = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC");
       <div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> <?php echo $error; ?></div>
     <?php endif; ?>
 
-    <!-- Add New User Form -->
+
     <div class="content-card">
       <h5 class="mb-4"><i class="fas fa-user-plus"></i> Add New User</h5>
       <form method="POST" class="row g-3">
@@ -130,7 +130,7 @@ $users = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC");
       </form>
     </div>
 
-    <!-- Users List -->
+
     <div class="content-card">
       <h5 class="mb-4"><i class="fas fa-list"></i> All Users</h5>
       <div class="table-responsive">
@@ -172,8 +172,6 @@ $users = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC");
                 </a>
               </td>
             </tr>
-
-            <!-- Edit Modal for each user -->
             <div class="modal fade" id="editModal<?php echo $user['id']; ?>" tabindex="-1">
               <div class="modal-dialog">
                 <div class="modal-content bg-dark text-light">

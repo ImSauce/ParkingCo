@@ -1,27 +1,23 @@
 <?php
 session_start();
 
-// Check if already logged in
 if (isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true) {
     header("Location: admin-dashboard.php");
     exit();
 }
 
-// Handle login
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     include 'connect.php';
     
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = $_POST['password'];
     
-    // Query admin table
     $sql = "SELECT * FROM admins WHERE username = '$username'";
     $result = mysqli_query($conn, $sql);
     
     if ($result && mysqli_num_rows($result) > 0) {
         $admin = mysqli_fetch_assoc($result);
         
-        // Verify password
         if (password_verify($password, $admin['password'])) {
             $_SESSION['admin_logged_in'] = true;
             $_SESSION['admin_id'] = $admin['id'];
@@ -93,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </style>
 </head>
 <body>  
-  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold text-primary" href="index.php"> 
@@ -112,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
   </nav>
 
-  <!-- Main Container -->
   <div class="main-container">
     <div class="login-container" style="position: relative;">
       <span class="admin-badge">

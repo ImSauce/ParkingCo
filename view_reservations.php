@@ -32,7 +32,6 @@ $result = $conn->query($sql);
                 <?php
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        // Combine start and end date/time correctly
                         $start = $row['start_date'] . ' ' . $row['start_time'];
                         $end = $row['end_date'] . ' ' . $row['end_time'];
 

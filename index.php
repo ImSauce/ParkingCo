@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// If user is not logged in, redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php?message=Please login first");
     exit();
@@ -33,7 +32,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
       transform: scale(1.03);
     }
 
-    /* Floor Details Modal Styles */
     .floor-details-section {
       margin-top: 20px;
       padding: 20px;
@@ -191,7 +189,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold text-primary" href="#"> 
@@ -214,7 +211,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
     </div>
   </nav>
 
-  <!-- HERO -->
   <header id="home" class="hero-section">
     <div class="hero-content container">
       <h1 class="display-4 fw-bold text-primary">Reserve Your Parking Slots Easily</h1>
@@ -226,11 +222,9 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
     </div>
   </header>
 
-  <!-- ABOUT SCRIPT -->
    <section class="about-page d-flex align-items-center min-vh-100">
   <div class="container text-light">
     
-    <!-- MAKATI -->
     <div class="row align-items-center mb-5">
       <div class="col-md-6">
         <div id="makatiCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -256,7 +250,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
       </div>
     </div>
 
-    <!-- QUEZON CITY -->
     <div class="row align-items-center flex-row-reverse mb-5">
       <div class="col-md-6">
         <div id="qcCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -282,7 +275,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
       </div>
     </div>
 
-    <!-- BGC -->
     <div class="row align-items-center mb-5">
       <div class="col-md-6">
         <div id="bgcCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -309,16 +301,13 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
     </div>
 
   </div>
-  <!-- Bootstrap JS Bundle (includes Popper) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </section>
 
 
-  <!-- SCHEDULE FORM -->
   <section id="reservation" class="slots-section">
     <div class="slots-container">
-      <!-- LEFT: Schedule Form -->
       <div class="schedule-form p-4 rounded">
         <h5 class="text-center mb-3">SCHEDULE FORM</h5>
         <form action="reserve.php" method="POST">
@@ -379,7 +368,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
             </div>
           </div>
 
-          <!-- Display subtotal/discount/total -->
           <div class="text-end mt-3">
             <p>Subtotal: ₱<span id="subtotal">0.00</span></p>
             <p>Discount: ₱<span id="discount">0.00</span></p>
@@ -390,14 +378,11 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
         </form>
       </div>
 
-      <!-- RIGHT: Choose Location with Swiper -->
       <div class="choose-location p-4 rounded text-center">
         <h5 class="mb-3">CHOOSE LOCATION</h5>
         
-        <!-- Location Slider Container -->
         <div class="location-slider-wrapper">
           <div class="location-slider" id="locationSlider">
-            <!-- Location 1: Quezon City (3 Floors) -->
             <div class="location-slide active" data-location="Quezon City" data-floors="3" data-rate="5">
               <div class="location-card-new">
                 <span class="selected-location-indicator" id="selected-qc">✓ Selected</span>
@@ -418,7 +403,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
               </div>
             </div>
 
-            <!-- Location 2: Makati (2 Floors) -->
             <div class="location-slide" data-location="Makati" data-floors="2" data-rate="8">
               <div class="location-card-new">
                 <span class="selected-location-indicator" id="selected-makati">✓ Selected</span>
@@ -439,7 +423,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
               </div>
             </div>
 
-            <!-- Location 3: BGC (1 Floor) -->
             <div class="location-slide" data-location="BGC" data-floors="1" data-rate="10">
               <div class="location-card-new">
                 <span class="selected-location-indicator" id="selected-bgc">✓ Selected</span>
@@ -461,20 +444,17 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
             </div>
           </div>
 
-          <!-- Navigation Dots -->
           <div class="slider-dots">
             <span class="dot active" data-slide="0"></span>
             <span class="dot" data-slide="1"></span>
             <span class="dot" data-slide="2"></span>
           </div>
 
-          <!-- Swipe Indicator -->
           <div class="swipe-indicator">
             <i class="fas fa-hand-point-left"></i> Swipe or Click Dots
           </div>
         </div>
 
-        <!-- Floor Details Section -->
         <div class="floor-details-section" id="floorDetails">
           <h6 class="text-white mb-3"><i class="fas fa-layer-group"></i> Available Floors</h6>
           <div id="floorList"></div>
@@ -485,14 +465,12 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="py-5">
     <div class="container">
       <h2 class="fw-bold mb-4 text-center text-primary">Get In Touch</h2>
       <p class="text-center text-muted mb-5">Have questions? We're here to help you find the perfect parking solution.</p>
       
       <div class="row g-4 mb-5">
-        <!-- Contact Info Cards -->
         <div class="col-md-4">
           <div class="contact-info-card text-center p-4 h-100">
             <div class="contact-icon mb-3">
@@ -535,7 +513,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
         </div>
       </div>
 
-      <!-- Map Section -->
       <div class="row">
         <div class="col-12">
           <div class="map-wrapper rounded overflow-hidden shadow">
@@ -547,11 +524,9 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="footer-section">
     <div class="container py-5">
       <div class="row g-4">
-        <!-- Company Info -->
         <div class="col-lg-4 col-md-6">
           <div class="footer-widget">
             <img src="images/WEBLOGO.png" alt="ParkingCo Logo" height="60" class="mb-3">
@@ -568,7 +543,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
           </div>
         </div>
 
-        <!-- Quick Links -->
         <div class="col-lg-2 col-md-6">
           <div class="footer-widget">
             <h5 class="footer-title">Quick Links</h5>
@@ -581,7 +555,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
           </div>
         </div>
 
-        <!-- Services -->
         <div class="col-lg-3 col-md-6">
           <div class="footer-widget">
             <h5 class="footer-title">Our Services</h5>
@@ -595,7 +568,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
           </div>
         </div>
 
-        <!-- Newsletter -->
         <div class="col-lg-3 col-md-6">
           <div class="footer-widget">
             <h5 class="footer-title">Stay Updated</h5>
@@ -618,7 +590,6 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
         </div>
       </div>
 
-      <!-- Footer Bottom -->
       <div class="footer-bottom mt-4 pt-4 border-top border-secondary">
         <div class="row align-items-center">
           <div class="col-md-6 text-center text-md-start">
@@ -638,26 +609,10 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Floor Data -->
 <script>
-  // Simulated floor occupancy data (in real app, fetch from database)
-  const floorData = {
-    'Quezon City': [
-      { floor: 'Floor 1', occupied: 45, capacity: 100 },
-      { floor: 'Floor 2', occupied: 78, capacity: 100 },
-      { floor: 'Floor 3', occupied: 100, capacity: 100 }
-    ],
-    'Makati': [
-      { floor: 'Floor 1', occupied: 92, capacity: 100 },
-      { floor: 'Floor 2', occupied: 35, capacity: 100 }
-    ],
-    'BGC': [
-      { floor: 'Floor 1', occupied: 67, capacity: 100 }
-    ]
-  };
+
 
   let currentRate = 5;
   let selectedLocationName = '';
@@ -683,43 +638,50 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
 
     document.getElementById(`selected-${id}`).classList.add('active');
 
-    const floors_data = floorData[location];
-    floors_data.forEach(floor => {
-      const percentage = (floor.occupied / floor.capacity) * 100;
-      let status = 'available';
-      let statusText = 'Available';
+fetch("./get_floors.php?location=" + encodeURIComponent(location))
+  .then(res => res.json())
+  .then(floors_data => {
+      floorList.innerHTML = "";
+      floorSelect.innerHTML = '<option value="">Select a floor</option>';
+      floorSelect.disabled = false;
 
-      if (percentage >= 100) {
-        status = 'full';
-        statusText = 'Full';
-      } else if (percentage >= 70) {
-        status = 'limited';
-        statusText = 'Limited';
-      }
+      floors_data.forEach(floor => {
+          const percentage = (floor.occupied / floor.capacity) * 100;
+          let status = "available";
+          let statusText = "Available";
 
-      const available = floor.capacity - floor.occupied;
+          if (percentage >= 100) {
+              status = "full";
+              statusText = "Full";
+          } else if (percentage >= 70) {
+              status = "limited";
+              statusText = "Limited";
+          }
 
-      const floorItem = `
-        <div class="floor-item">
-          <div class="floor-name">${floor.floor}</div>
-          <div class="floor-capacity">
-            <span class="capacity-text">${available}/${floor.capacity} available</span>
-            <div class="progress-bar-custom">
-              <div class="progress-fill ${status}" style="width: ${percentage}%"></div>
+          const available = floor.capacity - floor.occupied;
+
+          floorList.innerHTML += `
+            <div class="floor-item">
+              <div class="floor-name">${floor.floor_name}</div>
+              <div class="floor-capacity">
+                <span class="capacity-text">${available}/${floor.capacity} available</span>
+                <div class="progress-bar-custom">
+                  <div class="progress-fill ${status}" style="width: ${percentage}%"></div>
+                </div>
+                <span class="floor-status ${status}">${statusText}</span>
+              </div>
             </div>
-            <span class="floor-status ${status}">${statusText}</span>
-          </div>
-        </div>
-      `;
-      floorList.innerHTML += floorItem;
+          `;
 
-      if (status !== 'full') {
-        const option = document.createElement('option');
-        option.value = floor.floor;
-        option.textContent = `${floor.floor} (${available} slots available)`;
-        floorSelect.appendChild(option);
-      }
-    });
+          if (status !== "full") {
+              const opt = document.createElement("option");
+              opt.value = floor.floor_name;
+              opt.textContent = `${floor.floor_name} (${available} slots available)`;
+              floorSelect.appendChild(opt);
+          }
+      });
+  });
+
 
     calculateTotal();
   }
@@ -891,5 +853,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
+<script src="parking.js"></script>
 </body>
 </html>

@@ -7,7 +7,6 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
 include 'connect.php';
 
-// Handle Add Product with Image Upload
 if (isset($_POST['add_product'])) {
     $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
     $description = mysqli_real_escape_string($conn, $_POST['description']);
@@ -15,7 +14,6 @@ if (isset($_POST['add_product'])) {
     $stock = intval($_POST['stock']);
     $category = mysqli_real_escape_string($conn, $_POST['category']);
     
-    // Handle image upload
     $image = null;
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
         $target_dir = "uploads/products/";
@@ -46,14 +44,12 @@ if (isset($_POST['add_product'])) {
     }
 }
 
-// Handle Delete Product
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
-    // Get image path before deleting
     $result = mysqli_query($conn, "SELECT image FROM products WHERE id=$id");
     $product = mysqli_fetch_assoc($result);
     if ($product && $product['image'] && file_exists($product['image'])) {
-        unlink($product['image']); // Delete image file
+        unlink($product['image']); 
     }
     
     $sql = "DELETE FROM products WHERE id = $id";
@@ -62,7 +58,6 @@ if (isset($_GET['delete'])) {
     }
 }
 
-// Handle Edit Product
 if (isset($_POST['edit_product'])) {
     $id = intval($_POST['id']);
     $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
@@ -71,10 +66,8 @@ if (isset($_POST['edit_product'])) {
     $stock = intval($_POST['stock']);
     $category = mysqli_real_escape_string($conn, $_POST['category']);
     
-    // Handle image upload for edit
     $image_sql = "";
     if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        // Delete old image
         $result = mysqli_query($conn, "SELECT image FROM products WHERE id=$id");
         $old_product = mysqli_fetch_assoc($result);
         if ($old_product && $old_product['image'] && file_exists($old_product['image'])) {
@@ -99,7 +92,6 @@ if (isset($_POST['edit_product'])) {
     }
 }
 
-// Fetch all products
 $products = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
@@ -141,7 +133,6 @@ $products = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
       <div class="alert alert-danger"><i class="fas fa-exclamation-circle"></i> <?php echo $error; ?></div>
     <?php endif; ?>
 
-    <!-- Add New Product Form -->
     <div class="content-card">
       <h5 class="mb-4"><i class="fas fa-plus-circle"></i> Add New Product</h5>
       <form method="POST" enctype="multipart/form-data" class="row g-3">
@@ -178,7 +169,6 @@ $products = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
       </form>
     </div>
 
-    <!-- Products List -->
     <div class="content-card">
       <h5 class="mb-4"><i class="fas fa-list"></i> All Products</h5>
       <div class="table-responsive">
@@ -223,7 +213,6 @@ $products = mysqli_query($conn, "SELECT * FROM products ORDER BY id DESC");
               </td>
             </tr>
 
-            <!-- Edit Modal -->
             <div class="modal fade" id="editModal<?php echo $product['id']; ?>" tabindex="-1">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content bg-dark text-light">

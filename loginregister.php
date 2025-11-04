@@ -13,7 +13,6 @@ session_start();
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold text-primary" href="index.php">
@@ -33,11 +32,9 @@ session_start();
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
 
                 <?php if (!isset($_SESSION['user_id'])): ?>
-                    <!-- User NOT logged in -->
                     <li class="nav-item"><a class="nav-link text-primary" href="login.php">Login</a></li>
                     <li class="nav-item"><a class="nav-link text-primary" href="register.php">Sign Up</a></li>
                 <?php else: ?>
-                    <!-- User logged in -->
                     <li class="nav-item"><a class="nav-link text-success" href="#">Hi, <?= htmlspecialchars($_SESSION['username']); ?></a></li>
                     <li class="nav-item"><a class="nav-link text-danger" href="logout.php">Logout</a></li>
                 <?php endif; ?>
@@ -47,7 +44,6 @@ session_start();
     </div>
 </nav>
 
-<!-- HERO -->
 <header id="home" class="hero-section">
     <div class="hero-content container">
         <h1 class="display-4 fw-bold text-primary">Reserve Your Parking Slots Easily</h1>
@@ -64,7 +60,6 @@ session_start();
     </div>
 </header>
 
-<!-- FOOTER -->
 <footer class="py-4 text-center">
     <div class="container">
         <p>&copy; 2025 ParkingCo. All rights reserved.</p>

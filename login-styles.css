@@ -14,7 +14,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Background overlay */
 body::before {
     content: '';
     position: absolute;
@@ -27,7 +26,6 @@ body::before {
     z-index: 1;
 }
 
-/* === NAVIGATION === */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -67,7 +65,6 @@ body::before {
     color: #2e5be3;
 }
 
-/* === MAIN CONTENT === */
 .main-container {
     display: flex;
     justify-content: center;
@@ -97,10 +94,9 @@ body::before {
     letter-spacing: 1px;
 }
 
-/* === FORM ELEMENTS === */
 .input-group {
     display: flex;
-    align-items: center;   /* vertically center */
+    align-items: center;   
     justify-content: space-between;
     margin-bottom: 20px;
 }
@@ -109,11 +105,11 @@ body::before {
     margin: 0;
     font-size: 14px;
     color: #ccc;
-    width: 90px;   /* fixed width for alignment */
+    width: 90px;   
 }
 
 .input-wrapper {
-    flex: 1;  /* take remaining space */
+    flex: 1;  
     position: relative;
 }
 
@@ -147,7 +143,6 @@ body::before {
     font-size: 16px;
 }
 
-/* === BUTTONS === */
 .forgot-password {
     text-align: right;
     margin-bottom: 25px;
@@ -206,7 +201,6 @@ body::before {
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-/* === ANIMATIONS === */
 .input-wrapper {
     transition: transform 0.2s ease;
 }
@@ -215,7 +209,6 @@ body::before {
     transform: scale(1.02);
 }
 
-/* === RESPONSIVE DESIGN === */
 @media (max-width: 768px) {
     .navbar {
         padding: 15px 30px;
@@ -267,7 +260,6 @@ body::before {
     }
 }
 
-/* === HAMBURGER MENU FOR MOBILE === */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: row;

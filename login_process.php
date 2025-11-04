@@ -6,7 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST['email'];
   $password = $_POST['password'];
 
-  // Adjust table name and fields as per your database
   $query = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
   $result = mysqli_query($conn, $query);
 

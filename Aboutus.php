@@ -1,15 +1,5 @@
 <?php
-// This is a placeholder for any future server-side logic (e.g., fetching real-time data or managing sessions).
-// For now, the file primarily serves the HTML/CSS/JS content.
 
-// If you were to connect to a database or fetch dynamic data, 
-// the PHP code would go here before the HTML output starts, and 
-// echo or print statements would be used within the HTML sections.
-
-/* Example PHP logic for dynamic content:
-// $page_title = "ParkingCo - Home";
-// $locations = fetch_parking_locations(); 
-*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +11,6 @@
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
-  <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold text-primary" href="index.php">
@@ -41,11 +30,9 @@
     </div>
   </nav>
 
-  <!-- ABOUT SECTION -->
   <section class="about-page d-flex align-items-center min-vh-100">
     <div class="container text-light">
       <div class="row align-items-center">
-        <!-- LEFT SIDE: TEXT -->
         <div class="col-md-7">
           <h2 class="fw-bold text-primary mb-4">ABOUT US</h2>
           <p class="fs-5 mb-5">
@@ -74,7 +61,6 @@
           </div>
         </div>
 
-        <!-- RIGHT SIDE: LOGO -->
         <div class="col-md-5 text-center">
           <img src="images/WEBLOGO.png" alt="ParkingCo Logo" class="img-fluid about-logo">
         </div>
@@ -82,7 +68,6 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="py-3 text-center bg-black text-light">
     <div class="container">
       <p>&copy; 2025 ParkingCo. All rights reserved.</p>

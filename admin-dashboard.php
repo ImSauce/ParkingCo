@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Check if admin is logged in
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header("Location: admin-login.php");
     exit();
@@ -9,7 +8,6 @@ if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== tru
 
 include 'connect.php';
 
-// Get statistics
 $total_users = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM users"))['count'];
 $total_reservations = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM reservations"))['count'];
 $total_products = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as count FROM products"))['count'];
@@ -123,7 +121,6 @@ mysqli_close($conn);
   </style>
 </head>
 <body>
-  <!-- Header -->
   <div class="admin-header">
     <div class="container">
       <div class="d-flex justify-content-between align-items-center">
@@ -148,13 +145,11 @@ mysqli_close($conn);
   </div>
 
   <div class="container py-5">
-    <!-- Welcome Box -->
     <div class="welcome-box">
       <h2><i class="fas fa-chart-line"></i> Welcome back, <?php echo $_SESSION['admin_name']; ?>!</h2>
       <p class="mb-0">Here's an overview of your ParkingCo management system</p>
     </div>
 
-    <!-- Statistics Cards -->
     <div class="row mb-5">
       <div class="col-md-3">
         <div class="stat-card text-center">
@@ -186,7 +181,6 @@ mysqli_close($conn);
       </div>
     </div>
 
-    <!-- Management Actions -->
     <h3 class="mb-4"><i class="fas fa-tools"></i> Management Tools</h3>
     <div class="row">
       <div class="col-md-4 mb-4">

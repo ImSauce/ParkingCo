@@ -1,7 +1,7 @@
 <?php
 session_start();
-session_unset();   // Clears all session variables
-session_destroy(); // Destroys session
+session_unset();  
+session_destroy(); 
 
 header("Location: login.php?message=Logged out successfully");
 exit();

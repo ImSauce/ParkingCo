@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2025 at 12:46 PM
+-- Generation Time: Nov 04, 2025 at 03:27 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,6 +42,32 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `username`, `password`, `full_name`, `email`, `created_at`) VALUES
 (1, 'Admin', '$2y$10$GnMQp50sIY9Hr.7X8W/yj.RQSGi8YgwhLRTJejMgzGk6WNXSE2Bu.', 'System Administrator', 'admin@parkingco.com', '2025-11-03 04:44:57');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `floors`
+--
+
+CREATE TABLE `floors` (
+  `id` int(11) NOT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `floor_name` varchar(50) DEFAULT NULL,
+  `capacity` int(11) DEFAULT NULL,
+  `occupied` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `floors`
+--
+
+INSERT INTO `floors` (`id`, `location`, `floor_name`, `capacity`, `occupied`) VALUES
+(3, 'Quezon City', 'Floor 1', 100, 45),
+(4, 'Quezon City', 'Floor 2', 100, 78),
+(5, 'Quezon City', 'Floor 3', 100, 100),
+(6, 'Makati', 'Floor 1', 100, 92),
+(7, 'Makati', 'Floor 2', 100, 35),
+(8, 'BGC', 'Floor 1', 100, 67);
 
 -- --------------------------------------------------------
 
@@ -136,6 +162,12 @@ ALTER TABLE `admins`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+-- Indexes for table `floors`
+--
+ALTER TABLE `floors`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
@@ -164,6 +196,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `admins`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `floors`
+--
+ALTER TABLE `floors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `products`

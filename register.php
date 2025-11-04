@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connect.php'; // DB connection
+include 'connect.php'; 
 
 $success = "";
 $error = "";
@@ -12,24 +12,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $password = trim($_POST["password"]);
     $confirm = trim($_POST["confirm_password"]);
 
-    // --- Validation ---
     if ($password !== $confirm) {
         $error = "Passwords do not match!";
     } elseif (strlen($password) < 6) {
         $error = "Password must be at least 6 characters long!";
     } else {
 
-        // Check if username already exists
         $check = mysqli_query($conn, "SELECT id FROM users WHERE username='$username' LIMIT 1");
         
         if (mysqli_num_rows($check) > 0) {
             $error = "Username is already taken!";
         } else {
 
-            // Hash password
             $hashed = password_hash($password, PASSWORD_DEFAULT);
 
-            // Insert user
             $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed')";
             
             if (mysqli_query($conn, $sql)) {
@@ -55,7 +51,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 <body>
 
-<!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand fw-bold text-primary" href="index.php">
@@ -64,7 +59,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     </div>
 </nav>
 
-<!-- MAIN CONTAINER -->
 <div class="main-container">
     <div class="login-container">
         <h1 class="login-title">Sign Up</h1>

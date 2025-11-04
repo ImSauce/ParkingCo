@@ -81,7 +81,6 @@ if (isset($_SESSION['user_name'])) {
 </head>
 <body>
 
-  <!-- NAVBAR (identical to index.php) -->
   <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-black">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold text-primary" href="index.php">
@@ -103,7 +102,6 @@ if (isset($_SESSION['user_name'])) {
 
   <div class="overlay"></div>
 
-  <!-- LOGIN / REGISTER CARD -->
   <div class="container d-flex justify-content-center align-items-center flex-column">
     <div class="form-container" id="loginForm">
       <h3>Login</h3>
@@ -154,7 +152,6 @@ if (isset($_SESSION['user_name'])) {
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // --- Toggle Login/Register forms ---
     const showRegister = document.getElementById("showRegister");
     const showLogin = document.getElementById("showLogin");
     const loginForm = document.getElementById("loginForm");
