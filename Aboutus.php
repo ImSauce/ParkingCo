@@ -61,15 +61,15 @@
             </div>
             <div class="member text-center">
               <img src="images/samuel.png" alt="Samuel Cinco" class="member-img mb-2">
-              <p>CINCO, SAMUEL JAMES A.</p>
+              <p>CINCO, SAMUEL </p>
             </div>
             <div class="member text-center">
               <img src="images/steven.png" alt="Steven Macawile" class="member-img mb-2">
-              <p>MACAWILE, STEVEN LORENZ Y.</p>
+              <p>MACAWILE, STEVEN</p>
             </div>
             <div class="member text-center">
               <img src="images/cliff.png" alt="Cliff Bautista" class="member-img mb-2">
-              <p>BAUTISTA, CLIFF JEFFERSON S.</p>
+              <p>BAUTISTA, CLIFF </p>
             </div>
           </div>
         </div>

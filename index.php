@@ -9,6 +9,7 @@ if (!isset($_SESSION['user_id'])) {
 include 'connect.php';
 $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY product_name ASC");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -225,46 +226,94 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
     </div>
   </header>
 
-   <!-- ABOUT SECTION -->
-  <section class="about-page d-flex align-items-center min-vh-100">
-    <div class="container text-light">
-      <div class="row align-items-center">
-        <!-- LEFT SIDE: TEXT -->
-        <div class="col-md-7">
-          <h2 class="fw-bold text-primary mb-4">ABOUT US</h2>
-          <p class="fs-5 mb-5">
-            ParkingCo was created to solve a common problem in urban locations: the difficulty many drivers experience trying to find parking. 
-            That inefficient search for a paid parking spot is frustrating, and also contributes to a lack of flow and congestion.
-          </p>
-
-          <h3 class="fw-bold text-primary mb-4">Group Members</h3>
-          <div class="d-flex flex-wrap gap-4 justify-content-start">
-            <div class="member text-center">
-              <img src="images/miura.png" alt="Miura Yu" class="member-img mb-2">
-              <p>YU, MIURA</p>
+  <!-- ABOUT SCRIPT -->
+   <section class="about-page d-flex align-items-center min-vh-100">
+  <div class="container text-light">
+    
+    <!-- MAKATI -->
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6">
+        <div id="makatiCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner rounded shadow">
+            <div class="carousel-item active">
+              <img src="images/Parking lot_makati.jpg" class="d-block w-100" alt="Makati Parking 1">
             </div>
-            <div class="member text-center">
-              <img src="images/samuel.png" alt="Samuel Cinco" class="member-img mb-2">
-              <p>CINCO, SAMUEL JAMES A.</p>
+            <div class="carousel-item">
+              <img src="images/parking_makati2.jpg" class="d-block w-100" alt="Makati Parking 2">
             </div>
-            <div class="member text-center">
-              <img src="images/steven.png" alt="Steven Macawile" class="member-img mb-2">
-              <p>MACAWILE, STEVEN LORENZ Y.</p>
-            </div>
-            <div class="member text-center">
-              <img src="images/cliff.png" alt="Cliff Bautista" class="member-img mb-2">
-              <p>BAUTISTA, CLIFF JEFFERSON S.</p>
+            <div class="carousel-item">
+              <img src="images/parking_makati3.jpg" class="d-block w-100" alt="Makati Parking 3">
             </div>
           </div>
         </div>
-
-        <!-- RIGHT SIDE: LOGO -->
-        <div class="col-md-5 text-center">
-          <img src="images/WEBLOGO.png" alt="ParkingCo Logo" class="img-fluid about-logo">
-        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 class="fw-bold text-primary mb-3">Makati Parking Hub</h3>
+        <p>
+          Located in the heart of Makati’s central business district, our Makati Parking Hub offers 24/7 secure access and hassle-free online booking.
+          Perfect for professionals seeking safe and convenient parking close to major offices and establishments.
+        </p>
       </div>
     </div>
-  </section>
+
+    <!-- QUEZON CITY -->
+    <div class="row align-items-center flex-row-reverse mb-5">
+      <div class="col-md-6">
+        <div id="qcCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner rounded shadow">
+            <div class="carousel-item active">
+              <img src="images/parking lot_QC.jpg" class="d-block w-100" alt="Quezon City Parking 1">
+            </div>
+            <div class="carousel-item">
+              <img src="images/parking_QC2.jpg" class="d-block w-100" alt="Quezon City Parking 2">
+            </div>
+            <div class="carousel-item">
+              <img src="images/parking_QC3.jpg" class="d-block w-100" alt="Quezon City Parking 3">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 class="fw-bold text-primary mb-3">Quezon City Parking Lot</h3>
+        <p>
+          Conveniently located near major malls and universities, our Quezon City lot offers secure and affordable parking.
+          It’s well-lit, monitored, and designed for quick entry and exit.
+        </p>
+      </div>
+    </div>
+
+    <!-- BGC -->
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6">
+        <div id="bgcCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner rounded shadow">
+            <div class="carousel-item active">
+              <img src="images/Parking lot_bgc.jpg" class="d-block w-100" alt="BGC Parking 1">
+            </div>
+            <div class="carousel-item">
+              <img src="images/parking_bgc2.jpg" class="d-block w-100" alt="BGC Parking 2">
+            </div>
+            <div class="carousel-item">
+              <img src="images/parking_bgc3.jpg" class="d-block w-100" alt="BGC Parking 3">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h3 class="fw-bold text-primary mb-3">BGC Parking Tower</h3>
+        <p>
+          Located in Bonifacio Global City, our modern BGC Parking Tower offers premium parking with EV charging,
+          digital slot monitoring, and easy access to nearby shops and entertainment hubs.
+        </p>
+      </div>
+    </div>
+
+  </div>
+  <!-- Bootstrap JS Bundle (includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</section>
+
 
   <!-- SCHEDULE FORM -->
   <section id="reservation" class="slots-section">
