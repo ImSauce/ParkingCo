@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+// If user is not logged in, redirect to login page
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php?message=Please login first");
+    exit();
+}
 include 'connect.php';
 $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY product_name ASC");
 ?>
@@ -200,6 +207,7 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
           </li>
           <li class="nav-item"><a class="nav-link nav-link-expand" href="#reservation">Reserve</a></li>
           <li class="nav-item"><a class="nav-link nav-link-expand" href="#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link nav-link-expand" href="logout.php">Logout</a></li>
         </ul>
       </div>
     </div>
@@ -794,5 +802,16 @@ $products = mysqli_query($conn, "SELECT * FROM products WHERE stock > 0 ORDER BY
   });
   </script>
  <script src="parking.js"></script>
+ <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const logoutLink = document.querySelector('a[href="logout.php"]');
+    if (logoutLink) {
+        logoutLink.addEventListener("click", function(e) {
+            e.preventDefault(); 
+            window.location.href = "logout.php";
+        });
+    }
+});
+</script>
 </body>
 </html>

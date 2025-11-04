@@ -868,3 +868,20 @@ html {
     /* Guaranteed to be above all non-positioned elements (like the slider's track) */
     z-index: 99;       
 }
+/* Make navbar logo responsive on mobile */
+.navbar-brand img {
+    height: 80px;     /* default desktop size */
+    object-fit: contain;
+}
+
+@media (max-width: 768px) {
+    .navbar-brand img {
+        height: 55px;   /* reduce size for mobile so it won’t get cut */
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-brand img {
+        height: 45px;   /* even smaller for extra small screens */
+    }
+}
